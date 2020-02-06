@@ -32,13 +32,3 @@ elif platform.system() == "Linux":
         else:
             print("")
         return ""
-
-
-def read(in_stream=sys.stdin):
-    result = []
-    c = in_stream.read(1)
-    while c != "\t" and c != " " and c != "\n" and c != "\r" or len(result) == 0:
-        if c != "\t" and c != " " and c != "\n" and c != "\r":
-            result.append(c)
-        c = in_stream.read(1)
-    return "".join(result)
