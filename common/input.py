@@ -12,8 +12,10 @@ if platform.system() == "Windows":
         result = []
         while timer() < endtime:
             if msvcrt.kbhit():
+                endtime = timer() + timeout
                 result.append(msvcrt.getwche())
                 if result[-1] == '\n' or result[-1] == '\r':
+                    print("")
                     return ''.join(result[:-1])
             time.sleep(0.04)
         print("")
