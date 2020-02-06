@@ -13,7 +13,7 @@ if platform.system() == "Windows":
         while timer() < endtime:
             if msvcrt.kbhit():
                 result.append(msvcrt.getwche())
-                if result[-1] == '\n':
+                if result[-1] == '\n' or result[-1] == '\r':
                     return ''.join(result[:-1])
             time.sleep(0.04)
         print("")
@@ -35,8 +35,8 @@ elif platform.system() == "Linux":
 def read(in_stream=sys.stdin):
     result = []
     c = in_stream.read(1)
-    while c != "\t" and c != " " and c != "\n" or len(result) == 0:
-        if c != "\t" and c != " " and c != "\n":
+    while c != "\t" and c != " " and c != "\n" and c != "\r" or len(result) == 0:
+        if c != "\t" and c != " " and c != "\n" and c != "\r":
             result.append(c)
         c = in_stream.read(1)
     return "".join(result)
