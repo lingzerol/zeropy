@@ -5,7 +5,7 @@ import sys
 if platform.system() == "Windows":
     import msvcrt
 
-    def input_with_timeout(prompt, timeout, timer=time.monotonic):
+    def input_with_timeout(timeout, prompt="", timer=time.monotonic):
         sys.stdout.write(prompt)
         sys.stdout.flush()
         endtime = timer() + timeout
@@ -23,7 +23,7 @@ if platform.system() == "Windows":
 elif platform.system() == "Linux":
     import select
 
-    def input_with_timeout(prompt, timeout):
+    def input_with_timeout(timeout, prompt=""):
         sys.stdout.write(prompt)
         sys.stdout.flush()
         ready, _, _ = select.select([sys.stdin], [], [], timeout)
